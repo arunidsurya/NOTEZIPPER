@@ -109,6 +109,34 @@ const DeleteUser = asyncHandler(async (req, res) => {
   res.json({ message: "User Removed" });
 });
 
+const addUser = asyncHandler(async (req, res) => {
+  const { name, email, password, pic } = req.body;
+
+  console.log(name, pic);
+
+  const userExists = await User.findOne({ email });
+  if (userExists) {
+    res.status(400);
+    throw new Error("User Already Exists");
+  }
+
+  const user = await User.create({
+    name,
+    email,
+    password,
+    pic,
+  });
+
+  if (user) {
+    res.status(201).json({
+      success: sucess,
+    });
+  } else {
+    res.status(400);
+    throw new Error("Internal Error!");
+  }
+});
+
 module.exports = {
   getUsers,
   editUser,
@@ -116,4 +144,5 @@ module.exports = {
   DeleteUser,
   registerAdmin,
   authAdmin,
+  addUser,
 };

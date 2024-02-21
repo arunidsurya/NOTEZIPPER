@@ -47,44 +47,63 @@ const AdminHome = () => {
           USERS
         </h1>
         {admin ? (
-          <div className="table-admin">
-            <table className="table table-striped table-dark">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {users.map((user, index) => (
-                  <tr key={user._id}>
-                    <th scope="row">{index + 1}</th>
-                    <td>{user.name}</td>
-                    <td>{user.email}</td>
-                    <td>
-                      <button
-                        type="button"
-                        className="btn btn-primary"
-                        onClick={() => navigate(`/adminEdit/${user._id}`)}
-                      >
-                        Edit
-                      </button>
-                      <button
-                        type="button"
-                        className="btn btn-danger"
-                        style={{ marginLeft: "20px" }}
-                        onClick={() => deleteHandler(user._id)}
-                      >
-                        Delete
-                      </button>
-                    </td>
+          <>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col">
+                  <button
+                    type="button"
+                    class="btn btn-success"
+                    onClick={() => navigate("/adminAdd")}
+                  >
+                    Add User
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div className="table-admin">
+              <table className="table table-striped table-dark">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Action</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {users
+                    .slice()
+                    .reverse()
+                    .map((user, index) => (
+                      <tr key={user._id}>
+                        <th scope="row">{index + 1}</th>
+                        <td>{user.name}</td>
+                        <td>{user.email}</td>
+                        <td>
+                          <button
+                            type="button"
+                            className="btn btn-primary"
+                            onClick={() => navigate(`/adminEdit/${user._id}`)}
+                          >
+                            Edit
+                          </button>
+                          <button
+                            type="button"
+                            className="btn btn-danger"
+                            style={{ marginLeft: "20px" }}
+                            onClick={() => deleteHandler(user._id)}
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </div>
+          </>
         ) : (
           <>{navigate("/adminlogin")}</>
         )}

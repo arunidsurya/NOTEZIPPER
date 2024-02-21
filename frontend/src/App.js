@@ -13,6 +13,7 @@ import ProfileScreen from "./screens/ProfileScreen/ProfileScreen";
 import AdminPage from "./adminPage/AdminPage";
 import AdminEdit from "./AdminActions/AdminEdit";
 import AdminLogin from "./adminLogin/AdminLogin";
+import AdminAdd from "./AdminActions/AdminAdd";
 // import AdminEdit from "./AdminActions/AdminEdit";
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/adminEdit/:id" element={<AdminEdit />} />
           <Route path="/adminlogin" element={<AdminLogin />} />
+          <Route path="/adminAdd" element={<AdminAdd />} />
         </Routes>
       </main>
     </BrowserRouter>

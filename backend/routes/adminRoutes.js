@@ -6,6 +6,7 @@ const {
   DeleteUser,
   registerAdmin,
   authAdmin,
+  addUser,
 } = require("../controllers/adminControllers");
 
 const router = express.Router();
@@ -16,5 +17,6 @@ router.post("/updateUser", updateUser);
 router.delete("/deleteUser/:id", DeleteUser);
 router.post("/registerAdmin", registerAdmin);
 router.post("/adminLogin", authAdmin);
+router.post("/addUser", addUser);
 
 module.exports = router;

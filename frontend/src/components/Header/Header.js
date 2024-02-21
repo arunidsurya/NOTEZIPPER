@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../actions/userActions";
 
-const Header = () => {
+const Header = ({ setSearch }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
@@ -40,21 +40,37 @@ const Header = () => {
                   placeholder="Search"
                   className="me-2"
                   aria-label="Search"
+                  onChange={(e) => setSearch(e.target.value)}
                 />
               </Form>
             </Nav>
 
-            <Nav>
-              <Nav.Link onClick={() => navigate("/mynotes")}>My Notes</Nav.Link>
+            {userInfo ? (
+              <Nav>
+                <Nav.Link onClick={() => navigate("/mynotes")}>
+                  My Notes
+                </Nav.Link>
 
-              <NavDropdown title="Arun" id="navbarScrollingDropdown">
-                <NavDropdown.Item href="#action3">My Profile</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item onClick={logoutHandler}>
-                  Logout
-                </NavDropdown.Item>
-              </NavDropdown>
-            </Nav>
+                <NavDropdown
+                  title={userInfo?.name}
+                  id="navbarScrollingDropdown"
+                >
+                  <NavDropdown.Item href="/profile">
+                    My Profile
+                  </NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item onClick={logoutHandler}>
+                    Logout
+                  </NavDropdown.Item>
+                </NavDropdown>
+              </Nav>
+            ) : (
+              <nav>
+                <Nav.Link>
+                  <Link to={"/login"}>Login</Link>
+                </Nav.Link>
+              </nav>
+            )}
           </Navbar.Collapse>
         </Container>
       </Navbar>

@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteNoteAction, listNotes } from "../../actions/notesActions";
 import Loading from "../../components/Loading";
 import ErrorMessage from "../../components/ErrorMessage";
+import Header from "../../components/Header/Header";
 
 const MyNotes = ({ search }) => {
   const navigate = useNavigate();
@@ -64,6 +65,7 @@ const MyNotes = ({ search }) => {
 
   return (
     <div>
+      <Header />
       <MainScreen title={`Welcome back ${userInfo.name}..`}>
         {/* children */}
         <Link to="/createnote">

@@ -55,7 +55,7 @@ const authUser = asyncHandler(async (req, res) => {
 });
 
 const updateUserProfile = asyncHandler(async (req, res) => {
-  console.log("Profile update link entered");
+  // console.log("Profile update link entered");
   const user = await User.findById(req.user._id);
 
   if (user) {

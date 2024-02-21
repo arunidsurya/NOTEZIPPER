@@ -1,8 +1,8 @@
 import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import LandingPage from "./screens/LandingPage/LandingPage";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MyNotes from "./screens/MyNotes/MyNotes";
 import LoginScreen from "./screens/LoginPage/LoginScreen";
 import RegisterScreen from "./screens/RegisterPage/RegisterScreen";
@@ -11,14 +11,15 @@ import SingleNote from "./screens/singleNote/SingleNote";
 import { useState } from "react";
 import ProfileScreen from "./screens/ProfileScreen/ProfileScreen";
 import AdminPage from "./adminPage/AdminPage";
+import AdminEdit from "./AdminActions/AdminEdit";
+import AdminLogin from "./adminLogin/AdminLogin";
+// import AdminEdit from "./AdminActions/AdminEdit";
 
 function App() {
   const [search, setSearch] = useState("");
-  console.log(search);
 
   return (
     <BrowserRouter>
-      <Header setSearch={setSearch} />
       <main>
         <Routes>
           <Route path="/" element={<LandingPage />} />
@@ -28,10 +29,11 @@ function App() {
           <Route path="/createnote" element={<CreateNote />} />
           <Route path="/notes/:id" element={<SingleNote />} />
           <Route path="/mynotes" element={<MyNotes search={search} />} />
-          <Route path="/adminhome" element={<AdminPage />} />
+          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/adminEdit/:id" element={<AdminEdit />} />
+          <Route path="/adminlogin" element={<AdminLogin />} />
         </Routes>
       </main>
-      <Footer />
     </BrowserRouter>
   );
 }

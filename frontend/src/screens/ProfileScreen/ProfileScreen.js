@@ -6,6 +6,7 @@ import { updateProfile } from "../../actions/userActions";
 import Loading from "../../components/Loading";
 import ErrorMessage from "../../components/ErrorMessage";
 import { useNavigate } from "react-router-dom";
+import Header from "../../components/Header/Header";
 
 const ProfileScreen = ({ history }) => {
   const [name, setName] = useState("");
@@ -68,103 +69,106 @@ const ProfileScreen = ({ history }) => {
   };
 
   return (
-    <MainScreen title="EDIT PROFILE">
-      <div className="container">
-        <div className="row profileContainer">
-          <div className="col-md-6">
-            <form onSubmit={submitHandler}>
-              {loading && <Loading />}
-              {success && (
-                <ErrorMessage variant="success">
-                  Updated Successfully
-                </ErrorMessage>
-              )}
-              {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
-              <div className="mb-3">
-                <label htmlFor="name" className="form-label">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="name"
-                  placeholder="Enter Name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="email" className="form-label">
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  className="form-control"
-                  id="email"
-                  placeholder="Enter Email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="password" className="form-label">
-                  Password
-                </label>
-                <input
-                  type="password"
-                  className="form-control"
-                  id="password"
-                  placeholder="Enter Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="confirmPassword" className="form-label">
-                  Confirm Password
-                </label>
-                <input
-                  type="password"
-                  className="form-control"
-                  id="confirmPassword"
-                  placeholder="Confirm Password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                />
-              </div>
-              {picMessage && (
-                <ErrorMessage variant="danger">{picMessage}</ErrorMessage>
-              )}
-              <div className="mb-3">
-                <label htmlFor="pic" className="form-label">
-                  Change Profile Picture
-                </label>
-                <input
-                  type="file"
-                  className="form-control"
-                  id="pic"
-                  accept="image/png, image/jpeg"
-                  onChange={(e) => postDetails(e.target.files[0])}
-                />
-              </div>
-              <button type="submit" className="btn btn-primary">
-                Update
-              </button>
-            </form>
-          </div>
-          <div
-            className="col-md-6"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <img src={pic} alt={name} className="profilePic" />
+    <>
+      <Header />
+      <MainScreen title="EDIT PROFILE">
+        <div className="container">
+          <div className="row profileContainer">
+            <div className="col-md-6">
+              <form onSubmit={submitHandler}>
+                {loading && <Loading />}
+                {success && (
+                  <ErrorMessage variant="success">
+                    Updated Successfully
+                  </ErrorMessage>
+                )}
+                {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+                <div className="mb-3">
+                  <label htmlFor="name" className="form-label">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="name"
+                    placeholder="Enter Name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="email" className="form-label">
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    id="email"
+                    placeholder="Enter Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="password" className="form-label">
+                    Password
+                  </label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    id="password"
+                    placeholder="Enter Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="confirmPassword" className="form-label">
+                    Confirm Password
+                  </label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    id="confirmPassword"
+                    placeholder="Confirm Password"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                  />
+                </div>
+                {picMessage && (
+                  <ErrorMessage variant="danger">{picMessage}</ErrorMessage>
+                )}
+                <div className="mb-3">
+                  <label htmlFor="pic" className="form-label">
+                    Change Profile Picture
+                  </label>
+                  <input
+                    type="file"
+                    className="form-control"
+                    id="pic"
+                    accept="image/png, image/jpeg"
+                    onChange={(e) => postDetails(e.target.files[0])}
+                  />
+                </div>
+                <button type="submit" className="btn btn-primary">
+                  Update
+                </button>
+              </form>
+            </div>
+            <div
+              className="col-md-6"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <img src={pic} alt={name} className="profilePic" />
+            </div>
           </div>
         </div>
-      </div>
-    </MainScreen>
+      </MainScreen>
+    </>
   );
 };
 

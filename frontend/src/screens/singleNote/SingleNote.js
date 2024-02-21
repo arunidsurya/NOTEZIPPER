@@ -9,6 +9,7 @@ import Loading from "../../components/Loading";
 import ReactMarkdown from "react-markdown";
 import { useNavigate, useParams } from "react-router-dom";
 import { deleteNoteAction, updateNoteAction } from "../../actions/notesActions";
+import Header from "../../components/Header/Header";
 
 function SingleNote({ match }) {
   const [title, setTitle] = useState();
@@ -68,73 +69,77 @@ function SingleNote({ match }) {
   };
 
   return (
-    <MainScreen title="Edit Note">
-      <Card>
-        <Card.Header>Edit your Note</Card.Header>
-        <Card.Body>
-          <Form onSubmit={updateHandler}>
-            {loadingDelete && <Loading />}
-            {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
-            {errorDelete && (
-              <ErrorMessage variant="danger">{errorDelete}</ErrorMessage>
-            )}
-            <Form.Group controlId="title">
-              <Form.Label>Title</Form.Label>
-              <Form.Control
-                type="title"
-                placeholder="Enter the title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-              />
-            </Form.Group>
+    <>
+      <Header />
 
-            <Form.Group controlId="content">
-              <Form.Label>Content</Form.Label>
-              <Form.Control
-                as="textarea"
-                placeholder="Enter the content"
-                rows={4}
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-              />
-            </Form.Group>
-            {content && (
-              <Card>
-                <Card.Header>Note Preview</Card.Header>
-                <Card.Body>
-                  <ReactMarkdown>{content}</ReactMarkdown>
-                </Card.Body>
-              </Card>
-            )}
+      <MainScreen title="Edit Note">
+        <Card>
+          <Card.Header>Edit your Note</Card.Header>
+          <Card.Body>
+            <Form onSubmit={updateHandler}>
+              {loadingDelete && <Loading />}
+              {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+              {errorDelete && (
+                <ErrorMessage variant="danger">{errorDelete}</ErrorMessage>
+              )}
+              <Form.Group controlId="title">
+                <Form.Label>Title</Form.Label>
+                <Form.Control
+                  type="title"
+                  placeholder="Enter the title"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                />
+              </Form.Group>
 
-            <Form.Group controlId="content">
-              <Form.Label>Category</Form.Label>
-              <Form.Control
-                type="content"
-                placeholder="Enter the Category"
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-              />
-            </Form.Group>
-            {loading && <Loading size={50} />}
-            <Button variant="primary" type="submit">
-              Update Note
-            </Button>
-            <Button
-              className="mx-2"
-              variant="danger"
-              onClick={() => deleteHandler(id)}
-            >
-              Delete Note
-            </Button>
-          </Form>
-        </Card.Body>
+              <Form.Group controlId="content">
+                <Form.Label>Content</Form.Label>
+                <Form.Control
+                  as="textarea"
+                  placeholder="Enter the content"
+                  rows={4}
+                  value={content}
+                  onChange={(e) => setContent(e.target.value)}
+                />
+              </Form.Group>
+              {content && (
+                <Card>
+                  <Card.Header>Note Preview</Card.Header>
+                  <Card.Body>
+                    <ReactMarkdown>{content}</ReactMarkdown>
+                  </Card.Body>
+                </Card>
+              )}
 
-        <Card.Footer className="text-muted">
-          Updated on - {date.substring(0, 10)}
-        </Card.Footer>
-      </Card>
-    </MainScreen>
+              <Form.Group controlId="content">
+                <Form.Label>Category</Form.Label>
+                <Form.Control
+                  type="content"
+                  placeholder="Enter the Category"
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                />
+              </Form.Group>
+              {loading && <Loading size={50} />}
+              <Button variant="primary" type="submit">
+                Update Note
+              </Button>
+              <Button
+                className="mx-2"
+                variant="danger"
+                onClick={() => deleteHandler(id)}
+              >
+                Delete Note
+              </Button>
+            </Form>
+          </Card.Body>
+
+          <Card.Footer className="text-muted">
+            Updated on - {date.substring(0, 10)}
+          </Card.Footer>
+        </Card>
+      </MainScreen>
+    </>
   );
 }
 
